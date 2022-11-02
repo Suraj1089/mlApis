@@ -14,18 +14,9 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'app\\templates')
 templates = Jinja2Templates(directory=TEMPLATES_DIR)
 
 
-@app.get('/')
-def read_form():
-    return 'hello world'
-
-
-@app.get("/form")
+@app.get("/")
 def form_post(request: Request):
     result = "Type a number"
     return templates.TemplateResponse('form.html', context={'request': request, 'result': result})
 
 
-@app.post("/form")
-def form_post(request: Request, num: int = Form(...)):
-    result = int(num)
-    return templates.TemplateResponse('form.html', context={'request': request, 'result': result})
